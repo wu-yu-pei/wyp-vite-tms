@@ -1,5 +1,5 @@
 <template>
-  <div>plan</div>
+  <div>人才培养方案</div>
 </template>
 
 <script>

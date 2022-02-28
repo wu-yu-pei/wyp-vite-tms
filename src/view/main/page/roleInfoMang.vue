@@ -1,5 +1,7 @@
 <template>
-  <div>教学进度计划表</div>
+  <div>
+    角色信息管理
+  </div>
 </template>
 
 <script>

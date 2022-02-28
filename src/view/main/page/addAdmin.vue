@@ -1,5 +1,7 @@
 <template>
-  <div>教学进度计划表</div>
+  <div>
+    添加管理员
+  </div>
 </template>
 
 <script>

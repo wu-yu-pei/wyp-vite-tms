@@ -1,5 +1,5 @@
 <template>
-  <div>教学进度计划表</div>
+  <div>角色权限管理</div>
 </template>
 
 <script>

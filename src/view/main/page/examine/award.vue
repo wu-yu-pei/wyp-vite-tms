@@ -1,5 +1,7 @@
 <template>
-  <div>教学进度计划表</div>
+  <div>
+    审查奖项
+  </div>
 </template>
 
 <script>

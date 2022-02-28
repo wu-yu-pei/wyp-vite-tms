@@ -1,5 +1,7 @@
 <template>
-  <div>教学进度计划表</div>
+  <div>
+    用户反馈
+  </div>
 </template>
 
 <script>

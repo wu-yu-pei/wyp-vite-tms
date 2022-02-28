@@ -46,8 +46,8 @@ export default defineConfig({
     // 配置代理
     proxy: {
       '^/api': {
-        target: 'http://127.0.0.1:4523/mock/623670',
-        // target: 'http://39.103.181.186:80',
+        // target: 'http://127.0.0.1:4523/mock/623670',
+        target: 'http://39.103.181.186:80',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

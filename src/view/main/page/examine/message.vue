@@ -1,5 +1,5 @@
 <template>
-  <div>奖项填报</div>
+  <div>发送通知</div>
 </template>
 
 <script>

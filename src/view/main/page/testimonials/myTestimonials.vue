@@ -1,5 +1,5 @@
 <template>
-  <div>myTestimonials</div>
+  <div>我的奖状</div>
 </template>
 
 <script>

@@ -1,13 +1,9 @@
 <template>
-  <div>syllabus</div>
+  <div>教学大纲</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
-<style>
-
-</style>
+<style></style>
