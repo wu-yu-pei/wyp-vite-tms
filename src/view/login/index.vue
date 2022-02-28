@@ -44,6 +44,7 @@ import localCache from '../../utils/localCache'
 import rules from './valid/valid'
 import menuConfig from '../../config/menu'
 import { createRoute } from '../../config/utils/createRoute'
+import { onMounted, onUnmounted } from '@vue/runtime-core'
 
 let state = reactive({
   number: localCache.get('number') || '',
@@ -86,6 +87,19 @@ function handleBtnClick(formEl) {
     }
   })
 }
+
+function handleEnterClick(e) {
+  e.keyCode === 13 ? handleBtnClick(formEl.value) : ''
+}
+onMounted(() => {
+  // 监听回车事件
+  document.addEventListener('keydown', handleEnterClick)
+})
+
+onUnmounted(() => {
+  // 卸载回车事件
+  document.removeEventListener('keydown', handleEnterClick)
+})
 </script>
 
 <style lang="less">

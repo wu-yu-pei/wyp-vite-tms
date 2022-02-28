@@ -85,7 +85,47 @@ const menuConfig = {
     ],
     infoMenu: [],
   },
-  2: {
+  2001: {
+    navMenu: [
+      {
+        name: '首页',
+        path: '/main/page/header',
+        icon: '1',
+      },
+      {
+        name: '教学大纲',
+        path: '/main/page/syllabus',
+        icon: '2',
+      },
+      {
+        name: '教学进度计划表',
+        path: '/main/page/progress',
+        icon: '3',
+      },
+      {
+        name: '人才培养方案',
+        path: '/main/page/plan',
+        icon: '4',
+      },
+      {
+        name: '获奖情况',
+        path: '/main/page/testimonials',
+        icon: '5',
+        children: [
+          {
+            name: '我的奖状',
+            path: '/main/page/testimonials/myTestimonials',
+          },
+          {
+            name: '奖项填报',
+            path: '/main/page/testimonials/writeTestimonials',
+          },
+        ],
+      },
+    ],
+    infoMenu: [],
+  },
+  2002: {
     navMenu: [
       {
         name: '首页',
@@ -126,7 +166,43 @@ const menuConfig = {
     infoMenu: [],
   },
   3: {
-    navMenu: [],
+    navMenu: [
+      {
+        name: '首页',
+        path: '/main/page/header',
+        icon: '1',
+      },
+      {
+        name: '教学大纲',
+        path: '/main/page/syllabus',
+        icon: '2',
+      },
+      {
+        name: '教学进度计划表',
+        path: '/main/page/progress',
+        icon: '3',
+      },
+      {
+        name: '人才培养方案',
+        path: '/main/page/plan',
+        icon: '4',
+      },
+      {
+        name: '获奖情况',
+        path: '/main/page/testimonials',
+        icon: '5',
+        children: [
+          {
+            name: '我的奖状',
+            path: '/main/page/testimonials/myTestimonials',
+          },
+          {
+            name: '奖项填报',
+            path: '/main/page/testimonials/writeTestimonials',
+          },
+        ],
+      },
+    ],
     infoMenu: [],
   },
   4: {
