@@ -46,7 +46,7 @@ defineProps({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .control {
   margin: 10px 0;
   text-align: right;
