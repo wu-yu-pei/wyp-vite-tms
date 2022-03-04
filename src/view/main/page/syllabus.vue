@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="syllabus">
     <my-form :formDate="formDate" :config="config">
       <template #control>
         <el-button @click="query">查询</el-button>
@@ -279,4 +279,11 @@ function reset() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.syllabus {
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+</style>

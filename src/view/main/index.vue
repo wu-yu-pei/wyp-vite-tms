@@ -76,4 +76,10 @@ function out() {
 .main-leave-active {
   transition: all linear 0.3s;
 }
+.el-header {
+  background-color: #fff;
+}
+.el-main {
+  background-color: #eff0f5;
+}
 </style>

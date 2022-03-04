@@ -88,7 +88,8 @@ export default {
     position: relative;
     border: 1px solid #0960bd;
     margin: 15px;
-    // background-color: ;
+    background: url(../assets/images/loading.png) no-repeat center center;
+    background-color: #fff;
   }
 }
 .item {

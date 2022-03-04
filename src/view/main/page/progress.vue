@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="progress">
     <my-form :formDate="formDate" :config="config">
       <template #control>
         <el-button @click="query">查询</el-button>
@@ -30,61 +30,61 @@ let formDate = reactive({
 
 let config = ref([
   {
-    lable: '学期',
+    label: '学期',
     field: 'xueqi',
     placeholder: '请输入学期',
     type: 'select',
     width: '300px',
     options: [
       {
-        lable: '2020-2021第1学期',
+        label: '2020-2021第1学期',
         value: '2020-2021第1学期',
       },
       {
-        lable: '2020-2021第2学期',
+        label: '2020-2021第2学期',
         value: '2020-2021第2学期',
       },
       {
-        lable: '2021-2022第1学期',
+        label: '2021-2022第1学期',
         value: '2021-2022第1学期',
       },
       {
-        lable: '2021-2022第2学期',
+        label: '2021-2022第2学期',
         value: '2021-2022第2学期',
       },
       {
-        lable: '2022-2023第1学期',
+        label: '2022-2023第1学期',
         value: '2022-2023第2学期',
       },
       {
-        lable: '2023-2024第1学期',
+        label: '2023-2024第1学期',
         value: '2023-2024第2学期',
       },
     ],
   },
   {
-    lable: '课程',
+    label: '课程',
     field: 'kecheng',
     placeholder: '请输入课程',
     type: 'select',
     width: '300px',
     options: [
       {
-        lable: '《电路基础》',
+        label: '《电路基础》',
         value: '《电路基础》',
       },
       {
-        lable: '《数字逻辑》',
+        label: '《数字逻辑》',
         value: '《数字逻辑》',
       },
       {
-        lable: '《软件工程》',
+        label: '《软件工程》',
         value: '《软件工程》',
       },
     ],
   },
   {
-    lable: '层次',
+    label: '层次',
     field: 'cenci',
     placeholder: '请输入层次',
     type: 'select',
@@ -92,17 +92,17 @@ let config = ref([
     roleId: roleId,
     options: [
       {
-        lable: '1',
+        label: '1',
         value: '本科',
       },
       {
-        lable: '0',
+        label: '0',
         value: '专科',
       },
     ],
   },
   {
-    lable: '专业',
+    label: '专业',
     field: 'zhuanye',
     placeholder: '请输入专业',
     type: 'input',
@@ -110,17 +110,17 @@ let config = ref([
     roleId: roleId,
     // options: [
     //   {
-    //     lable: '1',
+    //     label: '1',
     //     value: '本科',
     //   },
     //   {
-    //     lable: '0',
+    //     label: '0',
     //     value: '专科',
     //   },
     // ],
   },
   {
-    lable: '年级',
+    label: '年级',
     field: 'nianji',
     placeholder: '请输入年纪',
     type: 'select',
@@ -128,23 +128,23 @@ let config = ref([
     roleId: roleId,
     options: [
       {
-        lable: '2019',
+        label: '2019',
         value: '2019',
       },
       {
-        lable: '2020',
+        label: '2020',
         value: '2020',
       },
       {
-        lable: '2021',
+        label: '2021',
         value: '2021',
       },
       {
-        lable: '2022',
+        label: '2022',
         value: '2022',
       },
       {
-        lable: '2023',
+        label: '2023',
         value: '2023',
       },
     ],
@@ -226,13 +226,13 @@ function setXueqi() {
   let res = []
   for (let i = grade, j = 1; i <= year; i++) {
     res.push({
-      lable: j,
+      label: j,
       value: `${i - 1}-${i}第一学期`,
     })
     j++
     res.push({
       value: `${i - 1}-${i}第二学期`,
-      lable: j,
+      label: j,
     })
     j++
   }
@@ -246,7 +246,7 @@ setXueqi()
 getKeChenList().then((res) => {
   let list = res.data
   let listmap = list.map((item) => ({
-    lable: item,
+    label: item,
     value: item,
   }))
   config.value[1].options = listmap
@@ -271,4 +271,11 @@ function reset() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.progress {
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+</style>
