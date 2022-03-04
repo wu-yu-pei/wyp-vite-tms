@@ -38,8 +38,6 @@ export function createRoute({ navMenu }) {
   router.push(navMenu[0].path)
 }
 
-
-
 /**
  * @param
  * @returns
@@ -49,7 +47,6 @@ export function reload() {
     ? createRoute({ navMenu: localCache.get('navMenu') })
     : router.push('/login')
 }
-
 
 /**
  *

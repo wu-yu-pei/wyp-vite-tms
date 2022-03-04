@@ -5,7 +5,10 @@
       <Menu></Menu>
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        Header
+        <el-button @click="out">退出</el-button>
+      </el-header>
       <el-main>
         <!-- <router-view> </router-view> -->
         <router-view v-slot="{ Component }">
@@ -20,7 +23,16 @@
   </el-container>
 </template>
 
-<script setup></script>
+<script setup>
+import LocalCache from '../../utils/localCache'
+import { useRouter } from 'vue-router'
+
+let router = useRouter()
+function out() {
+  LocalCache.clear()
+  router.replace('/login')
+}
+</script>
 
 <style lang="less">
 * {
