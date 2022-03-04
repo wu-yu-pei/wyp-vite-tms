@@ -2,7 +2,7 @@
   <div class="my-form">
     <el-form :model="formDate">
       <template v-for="item in config" :key="item">
-        <el-form-item :label="item.lable">
+        <el-form-item :label="item.lable" style="width: 300px">
           <template v-if="item.type == 'select'">
             <el-select
               v-model="formDate[item.field]"
@@ -46,14 +46,16 @@ defineProps({
 })
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 .control {
   margin: 10px 0;
   text-align: right;
 }
-.my-form .el-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+.my-form {
+  .el-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
 }
 </style>
