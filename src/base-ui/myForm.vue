@@ -51,7 +51,7 @@ defineProps({
   margin: 10px 0;
   text-align: right;
 }
-.el-form {
+.my-form .el-form {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
