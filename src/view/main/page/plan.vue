@@ -1,13 +1,11 @@
 <template>
-  <div>人才培养方案</div>
+  <div>
+    <my-pdf :url="url"></my-pdf>
+  </div>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+const url = ref('api/manangmentSystem/file/a.pdf')
 </script>
 
-<style>
-
-</style>
+<style lang="less"></style>
