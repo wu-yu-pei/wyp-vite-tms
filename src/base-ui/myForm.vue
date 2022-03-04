@@ -2,7 +2,36 @@
   <div class="my-form">
     <el-form :model="formDate">
       <template v-for="item in config" :key="item">
-        <el-form-item :label="item.lable" style="width: 300px">
+        <el-form-item
+          v-if="item.roleId"
+          v-isStudent="item.roleId"
+          :label="item.lable"
+          style="width: 300px"
+        >
+          <template v-if="item.type == 'select'">
+            <el-select
+              v-model="formDate[item.field]"
+              :placeholder="item.placeholder"
+              :style="{ width: item.width }"
+            >
+              <el-option
+                v-for="optionItem in item.options"
+                :key="optionItem.label"
+                :label="optionItem.label"
+                :value="optionItem.value"
+              ></el-option>
+            </el-select>
+          </template>
+          <template v-else>
+            <el-input
+              v-model="formDate[item.field]"
+              :type="item.type"
+              :placeholder="item.placeholder"
+              :style="{ width: item.width }"
+            ></el-input>
+          </template>
+        </el-form-item>
+        <el-form-item v-else :label="item.lable" style="width: 300px">
           <template v-if="item.type == 'select'">
             <el-select
               v-model="formDate[item.field]"
@@ -55,7 +84,7 @@ defineProps({
   .el-form {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
   }
 }
 </style>

@@ -4,6 +4,7 @@
       <template #control>
         <el-button @click="query">查询</el-button>
         <el-button @click="reset">重置</el-button>
+        <el-button v-isStudent="roleId" @click="reset">上传</el-button>
       </template>
     </my-form>
     <my-table :config="tableConfig" :tableDate="tableDate"></my-table>
@@ -15,9 +16,16 @@ import { reactive } from '@vue/reactivity'
 import { getAllKecheng, getKeChenList } from '../../../service/main/syllabus'
 import LocalCache from '../../../utils/localCache'
 
+let userInfo = LocalCache.get('profile')
+
+let roleId = userInfo.originalUserDB.roleId
+
 let formDate = reactive({
   xueqi: '',
   kecheng: '',
+  zhuanye: '',
+  nianji: '',
+  cenci: '',
 })
 
 let config = ref([
@@ -72,6 +80,72 @@ let config = ref([
       {
         lable: '《软件工程》',
         value: '《软件工程》',
+      },
+    ],
+  },
+  {
+    lable: '层次',
+    field: 'cenci',
+    placeholder: '请输入层次',
+    type: 'select',
+    width: '300px',
+    roleId: roleId,
+    options: [
+      {
+        lable: '1',
+        value: '本科',
+      },
+      {
+        lable: '0',
+        value: '专科',
+      },
+    ],
+  },
+  {
+    lable: '专业',
+    field: 'zhuanye',
+    placeholder: '请输入专业',
+    type: 'input',
+    width: '300px',
+    roleId: roleId,
+    // options: [
+    //   {
+    //     lable: '1',
+    //     value: '本科',
+    //   },
+    //   {
+    //     lable: '0',
+    //     value: '专科',
+    //   },
+    // ],
+  },
+  {
+    lable: '年级',
+    field: 'nianji',
+    placeholder: '请输入年纪',
+    type: 'select',
+    width: '300px',
+    roleId: roleId,
+    options: [
+      {
+        lable: '2019',
+        value: '2019',
+      },
+      {
+        lable: '2020',
+        value: '2020',
+      },
+      {
+        lable: '2021',
+        value: '2021',
+      },
+      {
+        lable: '2022',
+        value: '2022',
+      },
+      {
+        lable: '2023',
+        value: '2023',
       },
     ],
   },
@@ -135,12 +209,10 @@ let tableConfig = ref([
   },
 ])
 
-
-let teacherDate =  reactive()
+let teacherDate = reactive()
 
 let teacherConfig = ref()
 
-let userInfo = LocalCache.get('profile')
 /**
  * 计算学期
  * 暂时设为2019
