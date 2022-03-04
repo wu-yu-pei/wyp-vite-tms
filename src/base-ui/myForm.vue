@@ -5,7 +5,7 @@
         <el-form-item
           v-if="item.roleId"
           v-isStudent="item.roleId"
-          :label="item.lable"
+          :label="item.label"
           style="width: 300px"
         >
           <template v-if="item.type == 'select'">
@@ -31,7 +31,7 @@
             ></el-input>
           </template>
         </el-form-item>
-        <el-form-item v-else :label="item.lable" style="width: 300px">
+        <el-form-item v-else :label="item.label" style="width: 300px">
           <template v-if="item.type == 'select'">
             <el-select
               v-model="formDate[item.field]"

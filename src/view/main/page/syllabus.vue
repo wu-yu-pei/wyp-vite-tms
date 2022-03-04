@@ -30,61 +30,61 @@ let formDate = reactive({
 
 let config = ref([
   {
-    lable: '学期',
+    label: '学期',
     field: 'xueqi',
     placeholder: '请输入学期',
     type: 'select',
     width: '300px',
     options: [
       {
-        lable: '2020-2021第1学期',
+        label: '2020-2021第1学期',
         value: '2020-2021第1学期',
       },
       {
-        lable: '2020-2021第2学期',
+        label: '2020-2021第2学期',
         value: '2020-2021第2学期',
       },
       {
-        lable: '2021-2022第1学期',
+        label: '2021-2022第1学期',
         value: '2021-2022第1学期',
       },
       {
-        lable: '2021-2022第2学期',
+        label: '2021-2022第2学期',
         value: '2021-2022第2学期',
       },
       {
-        lable: '2022-2023第1学期',
+        label: '2022-2023第1学期',
         value: '2022-2023第2学期',
       },
       {
-        lable: '2023-2024第1学期',
+        label: '2023-2024第1学期',
         value: '2023-2024第2学期',
       },
     ],
   },
   {
-    lable: '课程',
+    label: '课程',
     field: 'kecheng',
     placeholder: '请输入课程',
     type: 'select',
     width: '300px',
     options: [
       {
-        lable: '《电路基础》',
+        label: '《电路基础》',
         value: '《电路基础》',
       },
       {
-        lable: '《数字逻辑》',
+        label: '《数字逻辑》',
         value: '《数字逻辑》',
       },
       {
-        lable: '《软件工程》',
+        label: '《软件工程》',
         value: '《软件工程》',
       },
     ],
   },
   {
-    lable: '层次',
+    label: '层次',
     field: 'cenci',
     placeholder: '请输入层次',
     type: 'select',
@@ -92,17 +92,17 @@ let config = ref([
     roleId: roleId,
     options: [
       {
-        lable: '1',
-        value: '本科',
+        label: '本科',
+        value: '1',
       },
       {
-        lable: '0',
-        value: '专科',
+        label: '专科',
+        value: '0',
       },
     ],
   },
   {
-    lable: '专业',
+    label: '专业',
     field: 'zhuanye',
     placeholder: '请输入专业',
     type: 'input',
@@ -120,7 +120,7 @@ let config = ref([
     // ],
   },
   {
-    lable: '年级',
+    label: '年级',
     field: 'nianji',
     placeholder: '请输入年纪',
     type: 'select',
@@ -128,23 +128,23 @@ let config = ref([
     roleId: roleId,
     options: [
       {
-        lable: '2019',
+        label: '2019',
         value: '2019',
       },
       {
-        lable: '2020',
+        label: '2020',
         value: '2020',
       },
       {
-        lable: '2021',
+        label: '2021',
         value: '2021',
       },
       {
-        lable: '2022',
+        label: '2022',
         value: '2022',
       },
       {
-        lable: '2023',
+        label: '2023',
         value: '2023',
       },
     ],
@@ -226,13 +226,13 @@ function setXueqi() {
   let res = []
   for (let i = grade, j = 1; i <= year; i++) {
     res.push({
-      lable: j,
-      value: `${i - 1}-${i}第一学期`,
+      value: j,
+      label: `${i - 1}-${i}第一学期`,
     })
     j++
     res.push({
-      value: `${i - 1}-${i}第二学期`,
-      lable: j,
+      value: j,
+      label: `${i - 1}-${i}第二学期`,
     })
     j++
   }
@@ -256,9 +256,17 @@ getKeChenList().then((res) => {
  * 查询
  */
 function query() {
-  getAllKecheng({ fileName: formDate.kecheng, uid: userInfo.originalUserDB.uid }).then((res) => {
-    console.log(res)
+  getAllKecheng({
+    fileName: formDate.kecheng,
+    uid: userInfo.originalUserDB.uid,
+    semester: formDate.xueqi,
   })
+    .then((res) => {
+      res.code === 200 ? (tableDate = res.data) : ElMessage.error('查询失败')
+    })
+    .catch((error) => {
+      ElMessage.error('error')
+    })
 }
 
 /**
