@@ -28,7 +28,9 @@
             <el-link type="primary">忘记密码</el-link>
           </el-form-item>
           <el-form-item class="logon">
-            <el-button type="primary" @click="handleBtnClick(formEl)">登录</el-button>
+            <el-button type="primary" @click="handleBtnClick(formEl)" :loading="loading"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </el-card>
@@ -52,6 +54,8 @@ let state = reactive({
   memary: true,
 })
 
+let loading = ref(false)
+
 let formEl = ref(null)
 
 const router = useRouter()
@@ -61,8 +65,10 @@ function handleBtnClick(formEl) {
   formEl.validate(async (valid) => {
     // 僬侥
     if (valid) {
+      loading.value = true
       let res = await logOn({ number: state.number, passwd: state.passwd })
       if (res.code == 200) {
+        loading.value = false
         ElMessage.success('欢迎回来')
         // 储存数据
         state.memary ? localCache.set('passwd', '123456') : localCache.remove('passwd')
@@ -79,6 +85,7 @@ function handleBtnClick(formEl) {
         // 跳转
         // router.push('/main')
       } else {
+        loading.value = false
         ElMessage.error('登录失败')
       }
     } else {
