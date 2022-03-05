@@ -35,32 +35,7 @@ let config = ref([
     placeholder: '请输入学期',
     type: 'select',
     width: '300px',
-    options: [
-      {
-        label: '2020-2021第1学期',
-        value: '2020-2021第1学期',
-      },
-      {
-        label: '2020-2021第2学期',
-        value: '2020-2021第2学期',
-      },
-      {
-        label: '2021-2022第1学期',
-        value: '2021-2022第1学期',
-      },
-      {
-        label: '2021-2022第2学期',
-        value: '2021-2022第2学期',
-      },
-      {
-        label: '2022-2023第1学期',
-        value: '2022-2023第2学期',
-      },
-      {
-        label: '2023-2024第1学期',
-        value: '2023-2024第2学期',
-      },
-    ],
+    options: [],
   },
   {
     label: '课程',
@@ -68,20 +43,7 @@ let config = ref([
     placeholder: '请输入课程',
     type: 'select',
     width: '300px',
-    options: [
-      {
-        label: '《电路基础》',
-        value: '《电路基础》',
-      },
-      {
-        label: '《数字逻辑》',
-        value: '《数字逻辑》',
-      },
-      {
-        label: '《软件工程》',
-        value: '《软件工程》',
-      },
-    ],
+    options: [],
   },
   {
     label: '层次',
@@ -92,12 +54,12 @@ let config = ref([
     roleId: roleId,
     options: [
       {
-        label: '1',
-        value: '本科',
+        label: '本科',
+        value: '1',
       },
       {
-        label: '0',
-        value: '专科',
+        label: '专科',
+        value: '0',
       },
     ],
   },

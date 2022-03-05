@@ -20,6 +20,8 @@ let userInfo = LocalCache.get('profile')
 
 let roleId = userInfo.originalUserDB.roleId
 
+let grade = userInfo.originalUserDB.grade
+
 let formDate = reactive({
   xueqi: '',
   kecheng: '',
@@ -152,28 +154,7 @@ let config = ref([
     type: 'select',
     width: '300px',
     roleId: roleId,
-    options: [
-      {
-        label: '2019',
-        value: '2019',
-      },
-      {
-        label: '2020',
-        value: '2020',
-      },
-      {
-        label: '2021',
-        value: '2021',
-      },
-      {
-        label: '2022',
-        value: '2022',
-      },
-      {
-        label: '2023',
-        value: '2023',
-      },
-    ],
+    options: [],
   },
 ])
 
@@ -224,10 +205,6 @@ let tableConfig = ref([
   },
 ])
 
-let teacherDate = reactive()
-
-let teacherConfig = ref()
-
 /**
  * 计算学期
  * 暂时设为2019
@@ -256,6 +233,22 @@ function setXueqi() {
 setXueqi()
 
 /**
+ *计算年级
+ */
+
+function setGrade() {
+  let startYear = new Date().getFullYear()
+  let endYear = startYear - 4
+  for (; endYear <= startYear; endYear++) {
+    config.value[5].options.push({
+      label: endYear,
+      value: endYear,
+    })
+  }
+}
+setGrade()
+
+/**
  * 获取课程列表
  */
 getKeChenList().then((res) => {
@@ -276,26 +269,24 @@ function query() {
     uid: userInfo.originalUserDB.uid,
     semester: formDate.xueqi,
     fileType: formDate.leixing,
+    grade,
   })
     .then((res) => {
       if (res.code === 200) {
-        // let list = res.data.list
-        // for (let i = 0; i < list.length; i++) {
-        //   for (let key in tableDate[i]) {
-        //     tableDate[i][key] = list[i][key]
-        //   }
-        // }
-        // tableDate[0].xuhao = 2000
-        tableDate.push({
-          xuhao: '200',
-          xueqi: '2',
-          xueyuan: '计科',
-          zhuanye: '计算机',
-          grade: '19级',
-          kecheng: 'C语言',
-          cenci: '1',
-          sta: '0',
-        })
+        let list = res.data.list
+        for (let item in list) {
+          tableDate.push(item)
+        }
+        // tableDate.push({
+        //   xuhao: '200',
+        //   xueqi: '2',
+        //   xueyuan: '计科',
+        //   zhuanye: '计算机',
+        //   grade: '19级',
+        //   kecheng: 'C语言',
+        //   cenci: '1',
+        //   sta: '0',
+        // })
       } else {
         ElMessage.error('查询失败')
       }
@@ -313,6 +304,7 @@ function reset() {
     formDate[key] = ''
   }
 }
+
 </script>
 
 <style scoped>

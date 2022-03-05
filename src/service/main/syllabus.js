@@ -10,13 +10,13 @@ export function getAllKecheng({
   pageNumber = 1,
   pageSize = 5,
   condition = 1,
-  fileType = 10,
+  fileType,
   semester = 1,
   fileName,
   uid,
   sta = 1,
+  grade,
 }) {
-  console.log(fileName)
   return http.request({
     url: '/manangmentSystem/fileOperate/getAllFiles',
     params: {
@@ -27,7 +27,8 @@ export function getAllKecheng({
       fileType,
       semester,
       fileName,
-      sta
+      sta,
+      grade,
     },
   })
 }

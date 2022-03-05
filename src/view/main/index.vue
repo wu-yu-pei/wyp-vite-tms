@@ -6,8 +6,7 @@
     </el-aside>
     <el-container>
       <el-header>
-        Header
-        <el-button @click="out">退出</el-button>
+       <Header></Header>
       </el-header>
       <el-main>
         <!-- <router-view> </router-view> -->
@@ -24,14 +23,7 @@
 </template>
 
 <script setup>
-import LocalCache from '../../utils/localCache'
-import { useRouter } from 'vue-router'
 
-let router = useRouter()
-function out() {
-  LocalCache.clear()
-  router.replace('/login')
-}
 </script>
 
 <style lang="less">

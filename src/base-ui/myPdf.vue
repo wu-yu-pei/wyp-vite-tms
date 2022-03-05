@@ -1,5 +1,8 @@
 <template>
   <div class="pdf">
+    <template v-if="!pageNum">
+      <div class="loading">加载中...</div>
+    </template>
     <template v-for="item in pageNum" :key="item">
       <div class="item" :data-index="item">
         <canvas
@@ -25,7 +28,7 @@ export default {
   },
   setup(props, { emit }) {
     const state = reactive({
-      pageNum: 0,
+      pageNum: null,
       pdfCtx: null,
     })
 
@@ -35,7 +38,7 @@ export default {
       loadingTask.promise.then((pdf) => {
         state.pdfCtx = pdf
         // 只渲染两页
-        state.pageNum = pdf.numPages > 10 ? 6 : pdf.numPages
+        state.pageNum = pdf.numPages
         nextTick(() => {
           renderPdf()
         })
@@ -90,6 +93,14 @@ export default {
     margin: 15px;
     background: url(../assets/images/loading.png) no-repeat center center;
     background-color: #fff;
+  }
+  .loading {
+    text-align: center;
+    line-height: 630px;
+    font-size: 24px;
+    letter-spacing: 8px;
+    width: 100%;
+    height: 100%;
   }
 }
 .item {
