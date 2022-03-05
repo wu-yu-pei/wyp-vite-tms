@@ -5,6 +5,7 @@ const moduleA = import.meta.globEager(`../../view/main/page/*.vue`)
 const moduleB = import.meta.globEager(`../../view/main/page/testimonials/*.vue`)
 const moduleC = import.meta.globEager(`../../view/main/page/examine/*.vue`)
 const moduleD = import.meta.globEager(`../../view/main/page/websetManger/*.vue`)
+const moduleE = import.meta.globEager(`../../view/main/page/infoMenu/*.vue`)
 // 动态路由modules[`../page${item.path}.vue`].default;
 
 // 生成路由
@@ -38,6 +39,19 @@ export function createRoute({ navMenu }) {
   router.push(navMenu[0].path)
 }
 
+export function createInfoRouter({ infoMenu }) {
+  console.log(infoMenu)
+  for (let infoItem of infoMenu) {
+    let item = {
+      name: infoItem.name,
+      path: infoItem.path,
+      component: moduleE[`../../view${infoItem.path}.vue`].default,
+    }
+    console.log(item)
+    router.addRoute('main', item)
+  }
+}
+
 /**
  * @param
  * @returns
@@ -45,6 +59,9 @@ export function createRoute({ navMenu }) {
 export function reload() {
   localCache.get('navMenu')?.length
     ? createRoute({ navMenu: localCache.get('navMenu') })
+    : router.push('/login')
+  localCache.get('infoMenu')?.length
+    ? createInfoRouter({ infoMenu: localCache.get('infoMenu') })
     : router.push('/login')
 }
 

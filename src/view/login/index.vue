@@ -45,7 +45,7 @@ import { logOn } from '../../service/login/index'
 import localCache from '../../utils/localCache'
 import rules from './valid/valid'
 import menuConfig from '../../config/menu'
-import { createRoute } from '../../config/utils/createRoute'
+import { createRoute, createInfoRouter } from '../../config/utils/createRoute'
 import { onMounted, onUnmounted } from '@vue/runtime-core'
 
 let state = reactive({
@@ -80,8 +80,13 @@ function handleBtnClick(formEl) {
         let config = menuConfig[roleId]
 
         localCache.set('navMenu', config.navMenu)
+        localCache.set('infoMenu', config.infoMenu)
+
         // 生成路由
         createRoute(config)
+        // 生成info路由
+        createInfoRouter(config)
+        
         // 跳转
         // router.push('/main')
       } else {

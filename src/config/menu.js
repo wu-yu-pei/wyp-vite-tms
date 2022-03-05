@@ -39,9 +39,19 @@ const menuConfig = {
     ],
     infoMenu: [
       {
-        name: '',
-        path: '',
-        icon: '',
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'Edit',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'Edit',
+      },
+      {
+        name: '修改密码',
+        path: '/main/page/infoMenu/setting',
+        icon: 'Edit',
       },
     ],
   },

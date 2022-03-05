@@ -1,10 +1,18 @@
 <template>
   <div class="plan">
-    <my-pdf :url="url"></my-pdf>
+    <template v-if="roleId != 0"> 非学生界面 </template>
+    <template v-else>
+      <my-pdf :url="url"></my-pdf>
+    </template>
   </div>
 </template>
 
 <script setup>
+import LocalCache from '../../../utils/localCache'
+
+// 用户信息
+let { roleId } = LocalCache.get('profile').originalUserDB
+// 用户pdfurl
 const url = ref('api/manangmentSystem/file/a.pdf')
 </script>
 
