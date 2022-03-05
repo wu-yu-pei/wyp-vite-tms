@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import { reactive, toRefs, nextTick, onMounted } from 'vue'
+import { reactive, toRefs, nextTick } from 'vue'
 import * as PDF from 'pdfjs-dist'
 PDF.GlobalWorkerOptions.workerSrc = '/pdf.worker.js'
 export default {
@@ -28,12 +28,9 @@ export default {
       pageNum: 0,
       pdfCtx: null,
     })
-    // 开始加载pdf
-    onMounted(() => {
-      resolvePdf(props.url)
-    })
 
     const resolvePdf = (url) => {
+      // 该实例具有由文档对象promise解析的属性。
       const loadingTask = PDF.getDocument(url)
       loadingTask.promise.then((pdf) => {
         state.pdfCtx = pdf
@@ -44,6 +41,9 @@ export default {
         })
       })
     }
+
+    resolvePdf(props.url)
+
     const renderPdf = (num = 1) => {
       state.pdfCtx.getPage(num).then((page) => {
         const canvas = document.getElementById(`pdf-canvas-${num}`)
@@ -65,7 +65,7 @@ export default {
         if (num < state.pageNum) {
           renderPdf(num + 1)
         } else {
-          emit('onRendered')
+          console.log('onRendered')
         }
       })
     }

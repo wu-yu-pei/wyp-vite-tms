@@ -26,6 +26,7 @@ let formDate = reactive({
   zhuanye: '',
   nianji: '',
   cenci: '',
+  leixing: '',
 })
 
 let config = ref([
@@ -80,6 +81,31 @@ let config = ref([
       {
         label: '《软件工程》',
         value: '《软件工程》',
+      },
+    ],
+  },
+  {
+    label: '类型',
+    field: 'leixing',
+    placeholder: '请输入类型',
+    type: 'select',
+    width: '300px',
+    options: [
+      {
+        label: '课程介绍',
+        value: '10',
+      },
+      {
+        label: '理论教学大纲',
+        value: '11',
+      },
+      {
+        label: '考试大纲',
+        value: '12',
+      },
+      {
+        label: '实验教学大纲',
+        value: '13',
       },
     ],
   },
@@ -151,18 +177,7 @@ let config = ref([
   },
 ])
 
-let tableDate = reactive([
-  {
-    xuhao: '01',
-    xueqi: '2',
-    xueyuan: '计科',
-    zhuanye: '计算机',
-    grade: '19级',
-    kecheng: 'C语言',
-    cenci: '1',
-    sta: '0',
-  },
-])
+let tableDate = reactive([])
 
 let tableConfig = ref([
   {
@@ -256,14 +271,34 @@ getKeChenList().then((res) => {
  * 查询
  */
 function query() {
-  console.log(formDate)
   getAllKecheng({
     fileName: formDate.kecheng,
     uid: userInfo.originalUserDB.uid,
     semester: formDate.xueqi,
+    fileType: formDate.leixing,
   })
     .then((res) => {
-      res.code === 200 ? (tableDate = res.data) : ElMessage.error('查询失败')
+      if (res.code === 200) {
+        // let list = res.data.list
+        // for (let i = 0; i < list.length; i++) {
+        //   for (let key in tableDate[i]) {
+        //     tableDate[i][key] = list[i][key]
+        //   }
+        // }
+        // tableDate[0].xuhao = 2000
+        tableDate.push({
+          xuhao: '200',
+          xueqi: '2',
+          xueyuan: '计科',
+          zhuanye: '计算机',
+          grade: '19级',
+          kecheng: 'C语言',
+          cenci: '1',
+          sta: '0',
+        })
+      } else {
+        ElMessage.error('查询失败')
+      }
     })
     .catch((error) => {
       ElMessage.error('error')

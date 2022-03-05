@@ -10,10 +10,11 @@ export function getAllKecheng({
   pageNumber = 1,
   pageSize = 5,
   condition = 1,
-  fileType = 1,
+  fileType = 10,
   semester = 1,
   fileName,
   uid,
+  sta = 1,
 }) {
   console.log(fileName)
   return http.request({
@@ -26,6 +27,7 @@ export function getAllKecheng({
       fileType,
       semester,
       fileName,
+      sta
     },
   })
 }
