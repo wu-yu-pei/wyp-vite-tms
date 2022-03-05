@@ -6,7 +6,7 @@
           v-if="item.roleId"
           v-isStudent="item.roleId"
           :label="item.label"
-          style="width: 300px"
+          style="width: 350px"
         >
           <template v-if="item.type == 'select'">
             <el-select
@@ -22,6 +22,15 @@
               ></el-option>
             </el-select>
           </template>
+          <template v-else-if="item.type === 'checkBox'">
+            <el-checkbox-group v-model="formDate[item.field]">
+              <el-checkbox
+                v-for="checkboxItem in item.checkboxs"
+                :key="checkboxItem.label"
+                :label="checkboxItem.label"
+              />
+            </el-checkbox-group>
+          </template>
           <template v-else>
             <el-input
               v-model="formDate[item.field]"
@@ -31,7 +40,7 @@
             ></el-input>
           </template>
         </el-form-item>
-        <el-form-item v-else :label="item.label" style="width: 300px">
+        <el-form-item v-else :label="item.label" style="width: 350px">
           <template v-if="item.type == 'select'">
             <el-select
               v-model="formDate[item.field]"

@@ -29,6 +29,7 @@ let formDate = reactive({
   nianji: '',
   cenci: '',
   leixing: '',
+  zhuangtai: [],
 })
 
 let config = ref([
@@ -155,6 +156,28 @@ let config = ref([
     width: '300px',
     roleId: roleId,
     options: [],
+  },
+  {
+    label: '状态',
+    field: 'zhuangtai',
+    placeholder: '请选择状态',
+    type: 'checkBox',
+    width: '400px',
+    roleId: roleId,
+    checkboxs: [
+      {
+        label: '审核通过',
+        value: '1',
+      },
+      {
+        label: '审核未通过',
+        value: '2',
+      },
+      {
+        label: '待审核',
+        value: '3',
+      },
+    ],
   },
 ])
 
@@ -304,7 +327,6 @@ function reset() {
     formDate[key] = ''
   }
 }
-
 </script>
 
 <style scoped>

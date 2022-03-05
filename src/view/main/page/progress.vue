@@ -88,26 +88,27 @@ let config = ref([
     type: 'select',
     width: '300px',
     roleId: roleId,
-    options: [
+    options: [],
+  },
+  {
+    label: '状态',
+    field: 'zhuangtai',
+    placeholder: '请选择状态',
+    type: 'checkBox',
+    width: '400px',
+    roleId: roleId,
+    checkboxs: [
       {
-        label: '2019',
-        value: '2019',
+        label: '审核通过',
+        value: '1',
       },
       {
-        label: '2020',
-        value: '2020',
+        label: '审核未通过',
+        value: '2',
       },
       {
-        label: '2021',
-        value: '2021',
-      },
-      {
-        label: '2022',
-        value: '2022',
-      },
-      {
-        label: '2023',
-        value: '2023',
+        label: '待审核',
+        value: '3',
       },
     ],
   },
@@ -201,6 +202,22 @@ function setXueqi() {
   config.value[0].options = res
 }
 setXueqi()
+
+/**
+ *计算年级
+ */
+
+function setGrade() {
+  let startYear = new Date().getFullYear()
+  let endYear = startYear - 4
+  for (; endYear <= startYear; endYear++) {
+    config.value[4].options.push({
+      label: endYear,
+      value: endYear,
+    })
+  }
+}
+setGrade()
 
 /**
  * 获取课程列表
