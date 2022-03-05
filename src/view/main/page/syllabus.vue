@@ -256,6 +256,7 @@ getKeChenList().then((res) => {
  * 查询
  */
 function query() {
+  console.log(formDate)
   getAllKecheng({
     fileName: formDate.kecheng,
     uid: userInfo.originalUserDB.uid,

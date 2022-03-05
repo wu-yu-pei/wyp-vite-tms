@@ -226,13 +226,13 @@ function setXueqi() {
   let res = []
   for (let i = grade, j = 1; i <= year; i++) {
     res.push({
-      label: j,
-      value: `${i - 1}-${i}第一学期`,
+      value: j,
+      label: `${i - 1}-${i}第一学期`,
     })
     j++
     res.push({
-      value: `${i - 1}-${i}第二学期`,
-      label: j,
+      value: j,
+      label: `${i - 1}-${i}第二学期`,
     })
     j++
   }
