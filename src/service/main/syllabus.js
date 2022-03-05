@@ -1,8 +1,16 @@
 import { http } from '../index'
 
-export function getKeChenList() {
+export function getKeChenList({ major, grade, level, collegeName, semester }) {
+  console.log(level)
   return http.get({
     url: '/manangmentSystem/user/getCourseInformation',
+    params: {
+      major,
+      grade,
+      level,
+      collegeName,
+      semester,
+    },
   })
 }
 

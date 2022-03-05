@@ -20,10 +20,10 @@ import { useRouter } from 'vue-router'
 
 let { uid } = LocalCache.get('profile').originalUserDB
 
-let url = ref('')
+let url = ref('http://39.103.181.186:80')
 getUserImg(uid).then(
   (res) => {
-    res.data && res.data.path && (url.value = res.data.path)
+    res.data && res.data.path && (url.value += res.data.path)
   },
   (err) => {
     ElMessage.error(err)

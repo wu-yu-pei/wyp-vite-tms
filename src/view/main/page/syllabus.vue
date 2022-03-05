@@ -22,6 +22,12 @@ let roleId = userInfo.originalUserDB.roleId
 
 let grade = userInfo.originalUserDB.grade
 
+let major = userInfo.originalUserDB.major
+
+let level = userInfo.originalUserDB.level
+
+let faculty = userInfo.originalUserDB.faculty
+
 let formDate = reactive({
   xueqi: '',
   kecheng: '',
@@ -72,20 +78,7 @@ let config = ref([
     placeholder: '请输入课程',
     type: 'select',
     width: '300px',
-    options: [
-      {
-        label: '《电路基础》',
-        value: '《电路基础》',
-      },
-      {
-        label: '《数字逻辑》',
-        value: '《数字逻辑》',
-      },
-      {
-        label: '《软件工程》',
-        value: '《软件工程》',
-      },
-    ],
+    options: [],
   },
   {
     label: '类型',
@@ -271,17 +264,33 @@ function setGrade() {
 }
 setGrade()
 
+
 /**
- * 获取课程列表
+ * 根据学期查课程
  */
-getKeChenList().then((res) => {
-  let list = res.data
-  let listmap = list.map((item) => ({
-    lable: item,
-    value: item,
-  }))
-  config.value[1].options = listmap
-})
+watch(
+  () => formDate.xueqi,
+  (n, o) => {
+    getKeChenList({
+      major,
+      grade,
+      level,
+      collegeName: faculty,
+      semester: n,
+    }).then((res) => {
+      if(res.code !== 200) return
+      let list = res.data
+      let listmap = list.map((item) => ({
+        lable: item,
+        value: item,
+      }))
+      config.value[1].options = listmap
+    })
+  },
+  {
+    deep: true,
+  }
+)
 
 /**
  * 查询
