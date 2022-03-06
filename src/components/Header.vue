@@ -41,6 +41,10 @@ let url = ref('http://39.103.181.186:80')
 function getImg() {
   getUserImg(uid).then(
     (res) => {
+      if (res.code !== 200) {
+        ElMessage.error(res.msg)
+        return
+      }
       res.data && res.data.path && (url.value += res.data.path)
     },
     (err) => {
@@ -71,10 +75,13 @@ function out() {
   justify-content: space-between;
   align-items: center;
   .right {
-    width: 175px;
+    // width: 175px;
     display: flex;
     justify-content: space-between;
     align-content: center;
+    .userImg {
+      margin: 0 10px;
+    }
   }
 }
 .el-dropdown {

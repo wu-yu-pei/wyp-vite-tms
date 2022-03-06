@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="setting">
     <my-form :formDate="data" :config="config">
       <template #control>
         <el-button @click="changePassword">修改</el-button>
@@ -55,4 +55,12 @@ function changePassword() {
 }
 </script>
 
-<style></style>
+<style scoped lang="less">
+.setting {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+}
+</style>

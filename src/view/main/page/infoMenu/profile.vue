@@ -1,8 +1,18 @@
 <template>
   <div class="user-info">
-    <template v-for="(value, key, index) in userInfo" :key="index"
-      >{{ key }} {{ value }} <br />
-    </template>
+    <el-descriptions class="margin-top" title="个人信息" :column="3" :size="size" border>
+      <template v-for="(value, key, index) in userInfo" :key="index">
+        <el-descriptions-item>
+          <template #label>
+            {{ $global.mapToChinese(key) }}
+          </template>
+          <template v-if="value">
+            {{ value }}
+          </template>
+          <template v-else> 未知 </template>
+        </el-descriptions-item>
+      </template>
+    </el-descriptions>
   </div>
 </template>
 
@@ -17,9 +27,27 @@ let userInfo = reactive({})
 getUserInfo(uid).then((res) => {
   let result = res.data
   for (let key in result) {
-    userInfo[key] = result[key]
+    ;[
+      'username',
+      'number',
+      'identityCard',
+      'phoneNumber',
+      'clszz',
+      'faculty',
+      'title',
+      'garde',
+      'major',
+    ].includes(key) && (userInfo[key] = result[key])
   }
 })
 </script>
 
-<style></style>
+<style scoped lang="less">
+.user-info {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+}
+</style>

@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { reload } from '../config/utils/createRoute'
+import localCache from '../utils/localCache'
 
 const routes = [
   {
@@ -31,7 +32,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  next()
+  if (to.path == '/login' && localCache.get('passwd') !== undefined) {
+    next(from.path)
+  } else {
+    next()
+  }
 })
 
 router.afterEach((to, from, next) => {

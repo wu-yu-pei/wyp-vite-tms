@@ -9,6 +9,7 @@
       limit="1"
       :show-file-list="false"
       @success="handleSuccess"
+      @error="handleSError"
     >
       <el-icon size="14px"> <UploadFilled></UploadFilled></el-icon>修改图像
     </el-upload>
@@ -29,7 +30,11 @@ let data = reactive({
 
 let emit = defineEmits(['uploadSuccess'])
 
-function handleSuccess() {
+function handleSuccess(res) {
+  if (res.code !== 200) {
+    ElMessage.error(res.msg)
+    return
+  }
   emit('uploadSuccess')
   uploadEl.value.clearFiles()
 }
