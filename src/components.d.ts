@@ -11,7 +11,6 @@ declare module 'vue' {
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -37,7 +36,6 @@ declare module 'vue' {
     MyPdf: typeof import('./base-ui/myPdf.vue')['default']
     MyTable: typeof import('./base-ui/myTable.vue')['default']
     NotFont: typeof import('./components/NotFont.vue')['default']
-    Password: typeof import('./components/password.vue')['default']
     UplodaImage: typeof import('./components/UplodaImage.vue')['default']
   }
 }

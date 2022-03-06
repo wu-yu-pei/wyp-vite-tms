@@ -362,6 +362,11 @@ const menuConfig = {
         path: '/main/page/infoMenu/message',
         icon: 'ChatRound',
       },
+      {
+        name: '修改密码',
+        path: '/main/page/infoMenu/setting',
+        icon: 'Edit',
+      },
     ],
   },
 }
