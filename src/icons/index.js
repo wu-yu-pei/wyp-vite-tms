@@ -7,9 +7,13 @@ import {
   Reading,
   Files,
   ArrowDown,
+  ChatRound,
+  User,
+  SwitchButton,
+  UploadFilled,
 } from '@element-plus/icons-vue'
 
-const icon = [Edit, Location, ArrowDown]
+const icon = [Edit, Location, ArrowDown, ChatRound, User, SwitchButton, UploadFilled]
 
 const navIcon = [HomeFilled, List, Stopwatch, Reading, Files]
 

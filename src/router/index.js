@@ -30,13 +30,13 @@ const router = createRouter({
   history: createWebHashHistory(),
 })
 
-// router.beforeEach((to, from, next) => {
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  next()
+})
 
-// router.afterEach((to, from, next) => {
-//   // next()
-// })
+router.afterEach((to, from, next) => {
+  // next()
+})
 
 function setupRouter(app) {
   app.use(router)

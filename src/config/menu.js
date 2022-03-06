@@ -41,12 +41,12 @@ const menuConfig = {
       {
         name: '个人信息',
         path: '/main/page/infoMenu/profile',
-        icon: 'Edit',
+        icon: 'User',
       },
       {
         name: '我的信箱',
         path: '/main/page/infoMenu/message',
-        icon: 'Edit',
+        icon: 'ChatRound',
       },
       {
         name: '修改密码',
@@ -93,7 +93,23 @@ const menuConfig = {
         ],
       },
     ],
-    infoMenu: [],
+    infoMenu: [
+      {
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'User',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'ChatRound',
+      },
+      {
+        name: '修改密码',
+        path: '/main/page/infoMenu/setting',
+        icon: 'Edit',
+      },
+    ],
   },
   2001: {
     navMenu: [
@@ -133,7 +149,23 @@ const menuConfig = {
         ],
       },
     ],
-    infoMenu: [],
+    infoMenu: [
+      {
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'User',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'ChatRound',
+      },
+      {
+        name: '修改密码',
+        path: '/main/page/infoMenu/setting',
+        icon: 'Edit',
+      },
+    ],
   },
   2002: {
     navMenu: [
@@ -173,7 +205,23 @@ const menuConfig = {
         ],
       },
     ],
-    infoMenu: [],
+    infoMenu: [
+      {
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'User',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'ChatRound',
+      },
+      {
+        name: '修改密码',
+        path: '/main/page/infoMenu/setting',
+        icon: 'Edit',
+      },
+    ],
   },
   3: {
     navMenu: [
@@ -250,9 +298,14 @@ const menuConfig = {
     ],
     infoMenu: [
       {
-        name: '',
-        path: '',
-        icon: '',
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'User',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'ChatRound',
       },
     ],
   },
@@ -300,9 +353,14 @@ const menuConfig = {
     ],
     infoMenu: [
       {
-        name: '',
-        path: '',
-        icon: '',
+        name: '个人信息',
+        path: '/main/page/infoMenu/profile',
+        icon: 'User',
+      },
+      {
+        name: '我的信箱',
+        path: '/main/page/infoMenu/message',
+        icon: 'ChatRound',
       },
     ],
   },

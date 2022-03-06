@@ -16,9 +16,10 @@
                 <el-dropdown-item :icon="item.icon">{{ item.name }}</el-dropdown-item>
               </router-link>
             </template>
-            <el-dropdown-item>修改图像</el-dropdown-item>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item @click="out">退出登录</el-dropdown-item>
+            <el-dropdown-item>
+              <uploda-image @uploadSuccess="HandelUploadSuccess"></uploda-image>
+            </el-dropdown-item>
+            <el-dropdown-item @click="out" icon="SwitchButton">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -35,14 +36,24 @@ import { useRouter } from 'vue-router'
 let { uid, username } = LocalCache.get('profile').originalUserDB
 let infoMenu = LocalCache.get('infoMenu')
 let url = ref('http://39.103.181.186:80')
-getUserImg(uid).then(
-  (res) => {
-    res.data && res.data.path && (url.value += res.data.path)
-  },
-  (err) => {
-    ElMessage.error(err)
-  }
-)
+
+// 用户图像
+function getImg() {
+  getUserImg(uid).then(
+    (res) => {
+      res.data && res.data.path && (url.value += res.data.path)
+    },
+    (err) => {
+      ElMessage.error(err)
+    }
+  )
+}
+getImg()
+
+function HandelUploadSuccess() {
+  url.value = 'http://39.103.181.186:80'
+  getImg()
+}
 
 // 退出登录
 let router = useRouter()
@@ -60,7 +71,7 @@ function out() {
   justify-content: space-between;
   align-items: center;
   .right {
-    width: 150px;
+    width: 175px;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -69,5 +80,8 @@ function out() {
 .el-dropdown {
   margin-right: 20px;
   line-height: 34px;
+}
+a {
+  text-decoration: none;
 }
 </style>

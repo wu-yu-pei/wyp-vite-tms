@@ -264,7 +264,6 @@ function setGrade() {
 }
 setGrade()
 
-
 /**
  * 根据学期查课程
  */
@@ -278,7 +277,10 @@ watch(
       collegeName: faculty,
       semester: n,
     }).then((res) => {
-      if(res.code !== 200) return
+      if (res.code !== 200) {
+        config.value[1].options = []
+        return
+      }
       let list = res.data
       let listmap = list.map((item) => ({
         lable: item,
