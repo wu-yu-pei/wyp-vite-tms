@@ -20,7 +20,7 @@ let userInfo = LocalCache.get('profile')
 
 let roleId = userInfo.originalUserDB.roleId
 
-let grade = userInfo.originalUserDB.grade
+let grade = userInfo.originalUserDB.grade || 2021
 
 let major = userInfo.originalUserDB.major
 
@@ -178,25 +178,25 @@ let tableDate = reactive([])
 
 let tableConfig = ref([
   {
-    prop: 'xuhao',
+    prop: 'did',
     label: '序号',
     width: '120',
     fixed: 'true',
   },
   {
-    prop: 'xueqi',
+    prop: 'semester',
     label: '学期',
-    width: '200',
+    width: '100',
   },
   {
-    prop: 'xueyuan',
+    prop: 'faculty',
     label: '学院',
     width: '200',
   },
   {
-    prop: 'zhuanye',
+    prop: 'major',
     label: '专业',
-    width: '120',
+    width: '200',
   },
   {
     prop: 'grade',
@@ -204,7 +204,7 @@ let tableConfig = ref([
     width: '120',
   },
   {
-    prop: 'kecheng',
+    prop: 'course',
     label: '课程名称',
     width: '300',
   },
@@ -214,7 +214,7 @@ let tableConfig = ref([
     width: '200',
   },
   {
-    prop: 'sta',
+    prop: 'status',
     label: '状态',
     width: '120',
     fixed: 'right',
@@ -306,21 +306,15 @@ function query() {
     grade,
   })
     .then((res) => {
+      console.log(res)
       if (res.code === 200) {
-        let list = res.data.list
-        for (let item in list) {
+        // 清楚tableDate
+        tableDate.length = 0
+        let list = res.data
+        for (let item of list) {
           tableDate.push(item)
         }
-        // tableDate.push({
-        //   xuhao: '200',
-        //   xueqi: '2',
-        //   xueyuan: '计科',
-        //   zhuanye: '计算机',
-        //   grade: '19级',
-        //   kecheng: 'C语言',
-        //   cenci: '1',
-        //   sta: '0',
-        // })
+        console.log(tableDate)
       } else {
         ElMessage.error('查询失败')
       }
@@ -337,6 +331,9 @@ function reset() {
   for (let key in formDate) {
     formDate[key] = ''
   }
+
+  // 清楚tableDate
+  tableDate.length = 0
 }
 </script>
 

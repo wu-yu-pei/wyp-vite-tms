@@ -19,6 +19,7 @@ let data = reactive({
   oldPasswd: '',
   reOldPasswd: '',
 })
+
 let config = ref([
   {
     label: '旧密码',
@@ -49,7 +50,11 @@ function changePassword() {
     ? ElMessage.error('两次密码不一致')
     : changeUserPassword({ uid, newPasswd: data.newPasswd, oldPasswd: data.oldPasswd }).then(
         (res) => {
-          ElMessage.success('修改成功')
+          if (res.code == 200) {
+            ElMessage.success('修改成功')
+          }else {
+             ElMessage.error(res.msg)
+          }
         }
       )
 }
