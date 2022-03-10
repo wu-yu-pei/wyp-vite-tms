@@ -9,11 +9,11 @@
 
 <script setup>
 import LocalCache from '../../../utils/localCache'
-
+const baseUrl = import.meta.env.VITE_APP_BASE_URL
 // 用户信息
 let { roleId } = LocalCache.get('profile').originalUserDB
 // 用户pdfurl
-const url = ref('api/manangmentSystem/file/a.pdf')
+const url = ref(baseUrl + '/manangmentSystem/file/a.pdf')
 </script>
 
 <style lang="less">

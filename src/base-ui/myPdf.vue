@@ -39,6 +39,7 @@ export default {
         state.pdfCtx = pdf
         // 只渲染两页
         state.pageNum = pdf.numPages
+        console.log(state.pageNum)
         nextTick(() => {
           renderPdf()
         })

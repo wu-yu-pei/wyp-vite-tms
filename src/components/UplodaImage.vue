@@ -3,7 +3,7 @@
     <el-upload
       ref="uploadEl"
       class="upload-demo"
-      action="/api/manangmentSystem/user/updateHeadImage"
+      :action="action + '/manangmentSystem/user/updateHeadImage'"
       name="fileName"
       :data="data"
       limit="1"
@@ -21,6 +21,8 @@ import LocalCache from '../utils/localCache'
 import { reactive } from '@vue/reactivity'
 
 let { uid } = LocalCache.get('profile').originalUserDB
+
+let action = ref(import.meta.env.VITE_APP_BASE_URL)
 
 let uploadEl = ref(null)
 
