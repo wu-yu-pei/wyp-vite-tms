@@ -169,11 +169,6 @@ let tableConfig = ref([
     width: '300',
   },
   {
-    prop: 'cenci',
-    label: '层次',
-    width: '200',
-  },
-  {
     prop: 'sta',
     label: '状态',
     width: '120',
@@ -187,24 +182,20 @@ let teacherConfig = ref()
 
 /**
  * 计算学期
- * 暂时设为2019
  */
 function setXueqi() {
   let { grade } = userInfo.originalUserDB
-  // TODO
-  grade = 2019
   let year = new Date().getFullYear()
-  grade = grade === year ? grade : grade + 1
   let res = []
-  for (let i = grade, j = 1; i <= year; i++) {
+  for (let i = grade, j = 1; i < year; i++) {
     res.push({
       value: j,
-      label: `${i - 1}-${i}第一学期`,
+      label: `${i}-${i * 1 + 1}第一学期`,
     })
     j++
     res.push({
       value: j,
-      label: `${i - 1}-${i}第二学期`,
+      label: `${i}-${i * 1 + 1}第二学期`,
     })
     j++
   }

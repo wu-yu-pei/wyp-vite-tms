@@ -186,7 +186,7 @@ let tableConfig = ref([
   {
     prop: 'semester',
     label: '学期',
-    width: '100',
+    width: '200',
   },
   {
     prop: 'faculty',
@@ -201,17 +201,12 @@ let tableConfig = ref([
   {
     prop: 'grade',
     label: '年纪',
-    width: '120',
+    width: '200',
   },
   {
     prop: 'course',
     label: '课程名称',
     width: '300',
-  },
-  {
-    prop: 'cenci',
-    label: '层次',
-    width: '200',
   },
   {
     prop: 'status',
@@ -227,20 +222,17 @@ let tableConfig = ref([
  */
 function setXueqi() {
   let { grade } = userInfo.originalUserDB
-  // TODO
-  grade = 2019
   let year = new Date().getFullYear()
-  grade = grade === year ? grade : grade + 1
   let res = []
-  for (let i = grade, j = 1; i <= year; i++) {
+  for (let i = grade, j = 1; i < year; i++) {
     res.push({
       value: j,
-      label: `${i - 1}-${i}第一学期`,
+      label: `${i}-${i * 1 + 1}第一学期`,
     })
     j++
     res.push({
       value: j,
-      label: `${i - 1}-${i}第二学期`,
+      label: `${i}-${i * 1 + 1}第二学期`,
     })
     j++
   }
