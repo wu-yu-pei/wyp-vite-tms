@@ -33,12 +33,14 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     Header: typeof import('./components/Header.vue')['default']
     Icon: typeof import('./components/Icon.vue')['default']
+    Loading: typeof import('element-plus/es')['ElLoadingDirective']
     Menu: typeof import('./components/Menu.vue')['default']
     MyForm: typeof import('./base-ui/myForm.vue')['default']
     MyPdf: typeof import('./base-ui/myPdf.vue')['default']
     MyTable: typeof import('./base-ui/myTable.vue')['default']
     NotFont: typeof import('./components/NotFont.vue')['default']
     UplodaImage: typeof import('./components/UplodaImage.vue')['default']
+    VerCode: typeof import('./components/VerCode.vue')['default']
   }
 }
 

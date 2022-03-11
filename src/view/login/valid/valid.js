@@ -19,4 +19,11 @@ export default {
       trigger: 'change',
     },
   ],
+  code: [
+    {
+      required: true,
+      message: '必传',
+      trigger: 'change',
+    },
+  ],
 }

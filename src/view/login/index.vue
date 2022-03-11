@@ -20,8 +20,15 @@
               size="large"
             ></el-input>
           </el-form-item>
-          <el-form-item class="code">
-            <el-input placeholder="验证码" size="large"></el-input>
+          <el-form-item class="code" prop="code">
+            <el-input placeholder="验证码" size="large" v-model="state.code"></el-input>
+            <ver-code
+              width="150px"
+              :word="state.vercode"
+              @click="handleVerCodeClick"
+              :loading="state.isLoading"
+            >
+            </ver-code>
           </el-form-item>
           <el-form-item class="control">
             <el-checkbox v-model="state.memary">记住密码</el-checkbox>
@@ -39,9 +46,11 @@
 </template>
 
 <script setup>
+// v-loading="state.isLoading"
+// element-loading-background="rgba(0,0,0,0.5)"
 import { reactive } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
-import { logOn } from '../../service/login/index'
+import { logOn, getCode } from '../../service/login/index'
 import localCache from '../../utils/localCache'
 import rules from './valid/valid'
 import menuConfig from '../../config/menu'
@@ -52,7 +61,22 @@ let state = reactive({
   number: localCache.get('number') || '',
   passwd: localCache.get('passwd') || '',
   memary: true,
+  code: '',
+  vercode: '',
+  isLoading: true,
 })
+// 验证码
+function code() {
+  state.isLoading = true
+  getCode().then((res) => {
+    if (res.code === 200) {
+      let { verifyCode } = res.data
+      state.vercode = verifyCode
+      state.isLoading = false
+    }
+  })
+}
+code()
 
 let loading = ref(false)
 
@@ -65,6 +89,11 @@ function handleBtnClick(formEl) {
   formEl.validate(async (valid) => {
     // 僬侥
     if (valid) {
+      if (state.code !== state.vercode) {
+        ElMessage.error('验证码错误')
+        code()
+        return
+      }
       loading.value = true
       let res = await logOn({ number: state.number, passwd: state.passwd })
       if (res.code == 200) {
@@ -86,7 +115,7 @@ function handleBtnClick(formEl) {
         createRoute(config)
         // 生成info路由
         createInfoRouter(config)
-        
+
         // 跳转
         // router.push('/main')
       } else {
@@ -107,6 +136,10 @@ onMounted(() => {
   // 监听回车事件
   document.addEventListener('keydown', handleEnterClick)
 })
+
+function handleVerCodeClick() {
+  code()
+}
 
 onUnmounted(() => {
   // 卸载回车事件
