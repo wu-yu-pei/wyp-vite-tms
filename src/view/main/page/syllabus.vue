@@ -223,6 +223,7 @@ let tableConfig = ref([
 function setXueqi() {
   let { grade } = userInfo.originalUserDB
   let year = new Date().getFullYear()
+  grade = grade ? grade : year
   let res = []
   for (let i = grade, j = 1; i < year; i++) {
     res.push({
