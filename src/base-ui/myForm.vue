@@ -40,6 +40,14 @@
               ></el-radio>
             </el-radio-group>
           </template>
+          <template v-else-if="item.type === 'time'">
+            <el-date-picker
+              v-model="formDate[item.field]"
+              type="date"
+              placeholder="Pick a date"
+              style="width: 100%"
+            ></el-date-picker>
+          </template>
           <template v-else>
             <el-input
               v-model="formDate[item.field]"
@@ -81,6 +89,14 @@
                 :key="redioboxItem.label"
               ></el-radio>
             </el-radio-group>
+          </template>
+          <template v-else-if="item.type === 'time'">
+            <el-date-picker
+              v-model="formDate[item.field]"
+              type="date"
+              placeholder="Pick a date"
+              style="width: 100%"
+            ></el-date-picker>
           </template>
           <template v-else>
             <el-input

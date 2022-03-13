@@ -1,6 +1,29 @@
 <template>
   <div class="write-textimonials">
-    <my-form :formDate="formDate" :config="config" labelWidth="90px" labelPosition="left"></my-form>
+    <el-card>
+      <template #header> 基本信息: </template>
+      <my-form
+        :formDate="formDate"
+        :config="config"
+        labelWidth="90px"
+        labelPosition="left"
+      ></my-form>
+    </el-card>
+    <el-card>
+      <template #header> 你的文件: </template>
+      <el-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        list-type="picture-card"
+        :on-preview="handlePictureCardPreview"
+        :on-remove="handleRemove"
+        :file-list="fileList"
+      >
+        <el-icon><Plus /></el-icon>
+      </el-upload>
+      <el-dialog v-model="dialogVisible">
+        <img style="width: 100%" :src="dialogImageUrl" alt="" />
+      </el-dialog>
+    </el-card>
   </div>
 </template>
 
@@ -37,9 +60,8 @@ let config = ref([
     label: '发证时间',
     field: 'ptime',
     placeholder: '请输入课程',
-    type: 'input',
+    type: 'time',
     width: '420px',
-    options: [],
   },
   {
     label: '发证机构',
@@ -169,6 +191,15 @@ let config = ref([
   width: 100%;
   height: 100%;
   background-color: #fff;
-  padding: 15px;
+  padding: 20px;
+  overflow: scroll;
+}
+
+// :deep深度选择器
+// .write-textimonials :deep .my-form .el-form .el-form-item{
+//   flex: 1;
+// }
+.el-card {
+  margin: 15px 0;
 }
 </style>
