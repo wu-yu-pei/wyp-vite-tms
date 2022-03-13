@@ -39,14 +39,15 @@ class WyRequest {
 
   request(config) {
     return new Promise((resolve, reject) => {
-      this.instance({ ...config })
-        .then((res) => {
-          resolve(res.data)
-        })
-        .catch((err) => {
-          ElMessage.error('登录失败')
+      this.instance({ ...config }).then(
+        (res) => {
+          res && resolve(res.data)
+        },
+        (err) => {
+          ElMessage.error('网络错误')
           reject(err)
-        })
+        }
+      )
     })
   }
 

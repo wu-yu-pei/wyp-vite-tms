@@ -23,7 +23,7 @@
           <el-form-item class="code" prop="code">
             <el-input placeholder="验证码" size="large" v-model="state.code"></el-input>
             <ver-code
-              width="150px"
+              width="120px"
               :word="state.vercode"
               @click="handleVerCodeClick"
               :loading="state.isLoading"
@@ -177,6 +177,7 @@ onUnmounted(() => {
     justify-content: center;
     align-items: center;
     width: 100vw;
+    min-width: 326px;
     height: calc(100vh - 40px);
     .login-pane-card {
       width: 480px;
