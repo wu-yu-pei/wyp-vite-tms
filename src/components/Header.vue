@@ -1,6 +1,15 @@
 <template>
   <div class="heaader">
-    <div class="left"></div>
+    <div class="left">
+      <el-icon :size="25" @click="handleIconClick">
+        <template v-if="isFold">
+          <expand />
+        </template>
+        <template v-else>
+          <fold />
+        </template>
+      </el-icon>
+    </div>
     <div class="right">
       <div class="userImg">
         <el-avatar shape="square" :size="30" :src="url"></el-avatar>
@@ -37,6 +46,7 @@ let { uid, username } = LocalCache.get('profile').originalUserDB
 let infoMenu = LocalCache.get('infoMenu')
 let url = ref('http://39.103.181.186:80')
 
+const emit = defineEmits(['flod'])
 // 用户图像
 function getImg() {
   getUserImg(uid).then(
@@ -57,6 +67,12 @@ getImg()
 function HandelUploadSuccess() {
   url.value = 'http://39.103.181.186:80'
   getImg()
+}
+// 折叠处理
+let isFold = ref(false)
+function handleIconClick() {
+  isFold.value = !isFold.value
+  emit('flod', isFold.value)
 }
 
 // 退出登录

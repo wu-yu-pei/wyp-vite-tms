@@ -1,12 +1,12 @@
 <template>
   <el-container>
-    <el-aside width="200px">
+    <el-aside :class="isFold ? 'moveone' : 'movetwo'">
       <div class="aside-top">WYP-VITE-TMS</div>
-      <Menu></Menu>
+      <Menu :isFold="isFold"></Menu>
     </el-aside>
     <el-container>
       <el-header>
-       <Header></Header>
+        <Header @flod="(flag) => (isFold = flag)"></Header>
       </el-header>
       <el-main>
         <!-- <router-view> </router-view> -->
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-
+let isFold = ref(false)
 </script>
 
 <style lang="less">
@@ -31,10 +31,21 @@
   margin: 0;
   padding: 0;
 }
+.moveone {
+  width: 64px;
+  background-color: #0c2135;
+  transition: width 0.3s ease-in;
+}
+.movetwo {
+  background-color: #0c2135;
+  width: 200px;
+  transition: width 0.3s ease-in;
+}
 .el-container {
   width: 100vw;
   height: 100vh;
   .el-aside {
+    overflow: hidden;
     .aside-top {
       text-align: center;
       line-height: 60px;
@@ -42,6 +53,7 @@
       height: 60px;
       background-color: #0c2135;
       color: #fff;
+      overflow: hidden;
     }
   }
 }

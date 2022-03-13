@@ -192,7 +192,8 @@ let config = ref([
   height: 100%;
   background-color: #fff;
   padding: 20px;
-  overflow: scroll;
+  // overflow: scroll;
+  overflow-y: scroll;
 }
 
 // :deep深度选择器
