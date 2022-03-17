@@ -65,6 +65,7 @@ let state = reactive({
   vercode: '',
   isLoading: true,
 })
+
 // 验证码
 function code() {
   state.isLoading = true
@@ -87,45 +88,44 @@ const router = useRouter()
 function handleBtnClick(formEl) {
   if (!formEl) return
   formEl.validate(async (valid) => {
-    // 僬侥
-    if (valid) {
-      if (state.code !== state.vercode) {
-        ElMessage.error('验证码错误')
-        code()
-        return
-      }
-      loading.value = true
-      let res = await logOn({ number: state.number, passwd: state.passwd })
-      if (res.code == 200) {
-        loading.value = false
-        ElMessage.success('欢迎回来')
-        // 储存数据
-        state.memary ? localCache.set('passwd', '123456') : localCache.remove('passwd')
-        state.memary ? localCache.set('number', state.number) : localCache.remove('number')
-        localCache.set('profile', res.data)
-        // 根据roleId生成navMenu和infoMenu
-        let { roleId } = res.data.originalUserDB
-        localCache.set('roleId', roleId)
-        let config = menuConfig[roleId]
+    if (!valid) return
 
-        localCache.set('navMenu', config.navMenu)
-        localCache.set('infoMenu', config.infoMenu)
-
-        // 生成路由
-        createRoute(config)
-        // 生成info路由
-        createInfoRouter(config)
-
-        // 跳转
-        // router.push('/main')
-      } else {
-        loading.value = false
-        ElMessage.error('登录失败')
-      }
-    } else {
-      console.log('error submit!')
-      return false
+    if (state.code !== state.vercode) {
+      ElMessage.error('验证码错误')
+      code()
+      return
     }
+
+    loading.value = true
+
+    let res = await logOn({ number: state.number, passwd: state.passwd })
+
+    if (res.code !== 200) {
+      loading.value = false
+      ElMessage.error('密码错误')
+      code()
+      return
+    }
+
+    loading.value = false
+    ElMessage.success('欢迎回来')
+    // 储存数据
+    state.memary ? localCache.set('passwd', '123456') : localCache.remove('passwd')
+    state.memary ? localCache.set('number', state.number) : localCache.remove('number')
+
+    // 根据roleId生成navMenu和infoMenu
+    let { roleId } = res.data.originalUserDB
+    let config = menuConfig[roleId]
+
+    localCache.set('profile', res.data)
+    localCache.set('roleId', roleId)
+    localCache.set('navMenu', config.navMenu)
+    localCache.set('infoMenu', config.infoMenu)
+
+    // 生成路由
+    createRoute(config)
+    // 生成info路由
+    createInfoRouter(config)
   })
 }
 

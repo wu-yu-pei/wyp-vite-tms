@@ -36,6 +36,7 @@ export function createRoute({ navMenu }) {
       }
     }
   }
+  console.log(navMenu[0].path);
   router.push(navMenu[0].path)
 }
 

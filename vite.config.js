@@ -42,6 +42,7 @@ export default defineConfig({
   },
 
   server: {
+    port: 8080,
     host: '0.0.0.0',
     // 配置代理
     proxy: {
