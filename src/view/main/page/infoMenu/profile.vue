@@ -26,6 +26,7 @@ let userInfo = reactive({})
 
 getUserInfo(uid).then((res) => {
   let result = res.data
+  // 从获取的info中提取需要的信息
   for (let key in result) {
     ;[
       'username',
